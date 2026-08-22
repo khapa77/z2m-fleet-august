@@ -1,0 +1,52 @@
+{
+  "name": "Zigbee2MQTT #7",
+  "version": "2.13.0-1",
+  "slug": "zigbee2mqtt_7",
+  "description": "Zigbee2MQTT instance 7",
+  "uart": true,
+  "udev": true,
+  "url": "https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt",
+  "startup": "application",
+  "services": ["mqtt:need"],
+  "hassio_api": true,
+  "arch": ["aarch64", "amd64"],
+  "boot": "auto",
+  "init": false,
+  "ingress": true,
+  "timeout": 30,
+  "panel_icon": "mdi:zigbee",
+  "map": [
+    {"type": "share", "read_only": false},
+    {"type": "homeassistant_config", "read_only": false, "path": "/config"},
+    {"type": "addon_config", "read_only": false, "path": "/addon_config"}
+  ],
+  "ports": {
+    "8099/tcp": null
+  },
+  "ports_description": {
+    "8099/tcp": "Frontend tcp-listen port"
+  },
+  "options": {
+    "data_path": "/config/zigbee2mqtt_7",
+    "mqtt": {},
+    "serial": {}
+  },
+  "schema": {
+    "data_path": "str",
+    "mqtt": {
+      "server": "str?",
+      "user": "str?",
+      "password": "str?",
+      "base_topic": "str?"
+    },
+    "serial": {
+      "port": "str?",
+      "adapter": "match(zstack|deconz|zigate|ezsp|ember|zboss)?",
+      "baudrate": "int?",
+      "rtscts": "bool?"
+    },
+    "watchdog": "str?",
+    "force_onboarding": "bool?"
+  },
+  "image": "ghcr.io/zigbee2mqtt/zigbee2mqtt-{arch}"
+}
